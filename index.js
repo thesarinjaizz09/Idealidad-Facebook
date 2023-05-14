@@ -47,13 +47,15 @@ app.listen(port, () => {
 });
 
 // Process incoming leads
-async function processNewLead(leadId) {
+async function processNewLead(lead) {
     let response;
 
     try {
         // Get lead details by lead ID from Facebook API
-        response = await axios.get(`https://graph.facebook.com/v9.0/${leadId}/?access_token=${FACEBOOK_PAGE_ACCESS_TOKEN}`);
-        console.log(response);
+        fetch(`https://graph.facebook.com/v9.0/${lead}/?access_token=${FACEBOOK_PAGE_ACCESS_TOKEN}`).then(res => res.json()).then(res => {
+            response = res;
+            console.log(res)
+        })
     }
     catch (err) {
         // Log errors
