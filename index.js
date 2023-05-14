@@ -56,6 +56,7 @@ async function processNewLead(leadId) {
     }
     catch (err) {
         // Log errors
+        console.log("Invalid Response")
         return console.warn(`An invalid response was received from the Facebook API:`, err.response.data ? JSON.stringify(err.response.data) : err.response);
     }
 
