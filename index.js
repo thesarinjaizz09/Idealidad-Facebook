@@ -52,9 +52,10 @@ async function processNewLead(lead) {
 
     try {
         // Get lead details by lead ID from Facebook API
-        fetch(`https://graph.facebook.com/v9.0/${lead}/?access_token=${FACEBOOK_PAGE_ACCESS_TOKEN}`).then(res => res.json()).then(res => {
-            response = res;
+        console.log("Request sent");
+        fetch(`https://graph.facebook.com/v9.0/${lead}/?access_token=${FACEBOOK_PAGE_ACCESS_TOKEN}`).then(res => {
             console.log(res)
+            response = res;
         })
     }
     catch (err) {
