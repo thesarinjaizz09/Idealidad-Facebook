@@ -55,7 +55,6 @@ async function processNewLead(lead) {
         console.log("Request sent");
         fetch(`https://graph.facebook.com/v9.0/${lead}/?access_token=${FACEBOOK_PAGE_ACCESS_TOKEN}`).then(res => {
             console.log(res)
-            response = res;
         })
     }
     catch (err) {
@@ -65,9 +64,9 @@ async function processNewLead(lead) {
     }
 
     // Ensure valid API response returned
-    if (!response.data || (response.data && (response.data.error || !response.data.field_data))) {
-        return console.warn(`An invalid response was received from the Facebook API: ${response}`);
-    }
+//     if (!response.data || (response.data && (response.data.error || !response.data.field_data))) {
+//         return console.warn(`An invalid response was received from the Facebook API: ${response}`);
+//     }
 
     // Lead fields
     const leadForm = [];
