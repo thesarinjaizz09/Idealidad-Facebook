@@ -55,21 +55,8 @@ async function processNewLead(lead) {
         console.log("Request sent");
         fetch(`https://graph.facebook.com/v9.0/${lead}/?access_token=${FACEBOOK_PAGE_ACCESS_TOKEN}`).then(res => {
             console.log(res)
-        })
-    }
-    catch (err) {
-        // Log errors
-        console.log("Invalid Response")
-        return console.warn(`An invalid response was received from the Facebook API:`, err.response.data ? JSON.stringify(err.response.data) : err.response);
-    }
-
-    // Ensure valid API response returned
-//     if (!response.data || (response.data && (response.data.error || !response.data.field_data))) {
-//         return console.warn(`An invalid response was received from the Facebook API: ${response}`);
-//     }
-
-    // Lead fields
-    const leadForm = [];
+            
+              const leadForm = [];
 
     // Extract fields
     for (const field of response.data.field_data) {
@@ -86,6 +73,37 @@ async function processNewLead(lead) {
 
     // Log to console
     console.log('A new lead was received!\n', leadInfo);
+        })
+    }
+    catch (err) {
+        // Log errors
+        console.log("Invalid Response")
+        return console.warn(`An invalid response was received from the Facebook API:`, err.response.data ? JSON.stringify(err.response.data) : err.response);
+    }
+
+    // Ensure valid API response returned
+//     if (!response.data || (response.data && (response.data.error || !response.data.field_data))) {
+//         return console.warn(`An invalid response was received from the Facebook API: ${response}`);
+//     }
+
+    // Lead fields
+//     const leadForm = [];
+
+//     // Extract fields
+//     for (const field of response.data.field_data) {
+//         // Get field name & value
+//         const fieldName = field.name;
+//         const fieldValue = field.values[0];
+
+//         // Store in lead array
+//         leadForm.push(`${fieldName}: ${fieldValue}`);
+//     }
+
+//     // Implode into string with newlines in between fields
+//     const leadInfo = leadForm.join('\n');
+
+//     // Log to console
+//     console.log('A new lead was received!\n', leadInfo);
 
     // Use a library like "nodemailer" to notify you about the new lead
     // 
