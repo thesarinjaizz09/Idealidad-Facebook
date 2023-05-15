@@ -50,15 +50,15 @@ app.listen(port, () => {
 async function processNewLead(leadId) {
     let response;
 
-    try {
+//     try {
         // Get lead details by lead ID from Facebook API
         response = await axios.post(`http://localhost:1337/api/facebook/?lead_id=${leadId}`);
         console.log(response)
-    }
-    catch (err) {
-        // Log errors
-        return console.warn(`An invalid response was received from the Facebook API:`, err.response.data ? JSON.stringify(err.response.data) : err.response);
-    }
+//     }
+//     catch (err) {
+//         // Log errors
+//         return console.warn(`An invalid response was received from the Facebook API:`, err.response.data ? JSON.stringify(err.response.data) : err.response);
+//     }
 
     // // Ensure valid API response returned
     // if (!response.data || (response.data && (response.data.error || !response.data.field_data))) {
