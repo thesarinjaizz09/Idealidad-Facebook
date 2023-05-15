@@ -52,7 +52,7 @@ async function processNewLead(leadId) {
 
 //     try {
         // Get lead details by lead ID from Facebook API
-        response = await axios.post(`http://localhost:1337/api/facebook/?lead_id=${leadId}`);
+        response = await axios.post(`http://localhost:1337/api/lead/?lead_id=${leadId}`);
         console.log(response)
 //     }
 //     catch (err) {
