@@ -50,37 +50,36 @@ app.listen(port, () => {
 async function processNewLead(leadId) {
     let response;
 
-//     try {
+    try {
         // Get lead details by lead ID from Facebook API
-        response = await axios.post(`http://localhost:1337/api/lead/?lead_id=${leadId}`);
-        console.log(response)
-//     }
-//     catch (err) {
-//         // Log errors
-//         return console.warn(`An invalid response was received from the Facebook API:`, err.response.data ? JSON.stringify(err.response.data) : err.response);
-//     }
+        response = await axios.post(`https://graph.facebook.com/v9.0/${leadId}/?access_token=${FACEBOOK_PAGE_ACCESS_TOKEN}`);
+    }
+    catch (err) {
+        // Log errors
+        return console.warn(`An invalid response was received from the Facebook API:`, err.response.data ? JSON.stringify(err.response.data) : err.response);
+    }
 
     // // Ensure valid API response returned
-    // if (!response.data || (response.data && (response.data.error || !response.data.field_data))) {
-    //     return console.warn(`An invalid response was received from the Facebook API: ${response}`);
-    // }
+    if (!response.data || (response.data && (response.data.error || !response.data.field_data))) {
+        return console.warn(`An invalid response was received from the Facebook API: ${response}`);
+    }
 
     // Lead fields
-    // const leadForm = [];
+    const leadForm = [];
 
     // // Extract fields
-    // for (const field of response.data.field_data) {
-    //     // Get field name & value
-    //     const fieldName = field.name;
-    //     const fieldValue = field.values[0];
+    for (const field of response.data.field_data) {
+        // Get field name & value
+        const fieldName = field.name;
+        const fieldValue = field.values[0];
 
-    //     // Store in lead array
-    //     leadForm.push(`${fieldName}: ${fieldValue}`);
-    // }
+        // Store in lead array
+        leadForm.push(`${fieldName}: ${fieldValue}`);
+    }
 
     // // Implode into string with newlines in between fields
-    // const leadInfo = leadForm.join('\n');
+    const leadInfo = leadForm.join('\n');
 
     // // Log to console
-    // console.log('A new lead was received!\n', leadInfo);
+    console.log('A new lead was received!\n', leadInfo);
 }
