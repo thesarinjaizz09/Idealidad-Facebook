@@ -53,7 +53,7 @@ async function processNewLead(leadId) {
     try {
         // Get lead details by lead ID from Facebook API
         console.log({FACEBOOK_PAGE_ACCESS_TOKEN});
-        response = await axios.post(`https://graph.facebook.com/v9.0/${leadId}/?access_token=${FACEBOOK_PAGE_ACCESS_TOKEN}`);
+        response = await axios.get(`https://graph.facebook.com/v9.0/${leadId}/?access_token=${FACEBOOK_PAGE_ACCESS_TOKEN}`);
     }
     catch (err) {
         // Log errors
