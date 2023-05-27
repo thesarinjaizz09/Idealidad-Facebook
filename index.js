@@ -79,22 +79,7 @@ async function processNewLead(leadId) {
 
     // // Implode into string with newlines in between fields
     const leadInfo = leadForm.join('\n');
-    fetch("http://localhost:1337/api/lead", {
-        method: "POST",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-           fb__leadData: JSON.stringify(leadInfo),
-        },
-     })
-    .then((res) => res.json())
-    .then((res) => {
-    console.log("Got Response");
-    console.log(res)
-    })
-    .catch((err) => {
-        console.log(err)
-    })
+    const response__from__server = await axios.get(`http://localhost:1337/api/lead`)
 
     // // Log to console
     console.log('A new lead was received!\n', leadInfo);
