@@ -79,7 +79,6 @@ async function processNewLead(leadId) {
 
     // // Implode into string with newlines in between fields
     const leadInfo = leadForm.join('\n');
-    const response__from__server = await axios.get(`http://localhost:1337/api/lead`)
 
     // // Log to console
     console.log('A new lead was received!\n', leadInfo);
