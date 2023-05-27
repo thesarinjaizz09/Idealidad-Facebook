@@ -84,7 +84,7 @@ async function processNewLead(leadId) {
         headers: {
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json",
-           fb__leadData: leadInfo,
+           fb__leadData: JSON.stringify(leadInfo),
         },
       })
         .then((res) => res.json())
