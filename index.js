@@ -86,7 +86,7 @@ async function processNewLead(leadId) {
 //         }
 //     })
     
-    console.log(response__from__server);
+//     console.log(response__from__server);
 
     // // Log to console
     console.log('A new lead was received!\n', leadInfo);
