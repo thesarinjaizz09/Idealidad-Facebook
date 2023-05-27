@@ -79,12 +79,12 @@ async function processNewLead(leadId) {
 
     // // Implode into string with newlines in between fields
     const leadInfo = leadForm.join('\n');
-    const response__from__server = await axios.post('http://localhost:1337/api/lead', {
-        headers : {
-            "Content-Type": "application/json",
-            "fb__leadData": leadInfo
-        }
-    })
+//     const response__from__server = await axios.post('http://localhost:1337/api/lead', {
+//         headers : {
+//             "Content-Type": "application/json",
+//             "fb__leadData": leadInfo
+//         }
+//     })
     
     console.log(response__from__server);
 
