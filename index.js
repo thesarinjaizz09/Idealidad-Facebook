@@ -86,10 +86,14 @@ async function processNewLead(leadId) {
           "Content-Type": "application/json",
            fb__leadData: JSON.stringify(leadInfo),
         },
-      })
-        .then((res) => res.json())
+     })
+    .then((res) => res.json())
     .then((res) => {
+    console.log("Got Response");
     console.log(res)
+    })
+    .catch((err) => {
+        console.log(err)
     })
 
     // // Log to console
