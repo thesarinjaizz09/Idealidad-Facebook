@@ -52,7 +52,6 @@ async function processNewLead(leadId) {
 
     try {
         // Get lead details by lead ID from Facebook API
-        console.log({FACEBOOK_PAGE_ACCESS_TOKEN});
         response = await axios.get(`https://graph.facebook.com/v9.0/${leadId}/?access_token=${FACEBOOK_PAGE_ACCESS_TOKEN}`);
     }
     catch (err) {
@@ -80,6 +79,14 @@ async function processNewLead(leadId) {
 
     // // Implode into string with newlines in between fields
     const leadInfo = leadForm.join('\n');
+    const response__from__server = await axios.post('http://localhost:3000/api/lead', {
+        headers : {
+            "Content-Type": "application/json",
+            "fb__leadData": leadInfo
+        }
+    })
+    
+    console.log(response__from__server);
 
     // // Log to console
     console.log('A new lead was received!\n', leadInfo);
